@@ -29,7 +29,7 @@ defaultContentLanguage = "zh-hans"
 summaryLength = 100
 
 # 每页文章个数
-paginate = 10
+paginate = 8
 
 # Set your Google Analytics UA here
 # googleAnalytics = "UA-000000000-0"
