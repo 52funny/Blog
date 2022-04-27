@@ -3,11 +3,11 @@
 <div class="sidebar-wrapper">
   <div class="sidebar-item sidebar-pages">
     <h3>友链</h3>
+    <br />
     <ul>
       {{ range .Site.Data.friends }}
       <li>
-        <a href="{{ .url }}">{{ .name }}</a>&nbsp&nbsp&nbsp
-        {{ if isset . "description" }}
+        <a href="{{ .url }}">{{ .name }}</a>&nbsp&nbsp&nbsp {{ if isset . "description" }}
         <span>{{ .description }}</span>
         {{ else }}
         <span>Null</span>
