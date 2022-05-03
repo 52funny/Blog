@@ -5,7 +5,7 @@ theme: hugo-notepadium
 languageCode: zh-cn
 hasCJKLanguage: true
 enableEmoji: true
-enableRobotsTXT: true
+# enableRobotsTXT: true
 
 defaultContentLanguage: zh-hans
 summaryLength: 100
