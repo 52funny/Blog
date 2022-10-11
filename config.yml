@@ -1,4 +1,4 @@
-baseURL: 'https://52funny.github.io'
+baseURL: "https://52funny.github.io"
 title: 52funny Blog
 theme: hugo-notepadium
 
@@ -16,12 +16,15 @@ params:
   showWordCounter: true
   showToc: true
   style: auto
-  slogan: < Code /> 
- 
+  slogan: < Code />
+
   nav:
     showCategories: true
     showTags: true
     custom:
+      - title: Algorithm
+        url: /algorithm
+
       - title: Friends
         url: /friends
 
@@ -34,4 +37,3 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-
