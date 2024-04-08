@@ -16,12 +16,22 @@ params:
   showWordCounter: true
   showToc: true
   style: auto
-  slogan: < Code />
+
+  syntax:
+    use: "hljs"
+    theme: "dracula"
+
+  math:
+    enable: true
+    use: "katex"
 
   nav:
     showCategories: true
     showTags: true
     custom:
+      - title: Home
+        url: /
+
       - title: Algorithm
         url: /algorithm
 
