@@ -23,7 +23,7 @@ params:
 
   math:
     enable: true
-    use: "katex"
+    use: "mathjax"
 
   nav:
     showCategories: true
