@@ -1,0 +1,61 @@
+baseURL = "https://52funny.github.io"
+title = "52funny Blog"
+theme = "hugo-notepadium"
+languageCode = "zh-cn"
+hasCJKLanguage = true
+enableEmoji = true
+defaultContentLanguage = "zh-hans"
+summaryLength = 100
+paginate = 8
+
+[markup.highlight]
+codeFences = true
+noClasses = false
+
+[params]
+author = "52funny"
+showWordCounter = true
+showToc = true
+style = "auto"
+ipv6ready = true
+
+[params.syntax]
+use = "hljs"
+theme = "github"
+darkTheme = "dracula"
+
+[params.math]
+enable = true
+use = "katex"
+
+[params.nav]
+showCategories = true
+showTags = true
+
+[[params.nav.custom]]
+title = "Home"
+url = "/"
+
+[[params.nav.custom]]
+title = "Algorithm"
+url = "/algorithm"
+
+[[params.nav.custom]]
+title = "Friends"
+url = "/friends"
+
+[[params.nav.custom]]
+title = "About"
+url = "/about"
+
+[markup]
+codeFences = true
+noClasses = false
+
+[markup.goldmark.renderer]
+unsafe = true
+
+
+# [params.assets]
+# css = ["https://unpkg.com/@antonz/codapi@0.19.0/dist/snippet.css"]
+# js = ["https://unpkg.com/@antonz/codapi@0.19.0/dist/snippet.js"]
