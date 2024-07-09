@@ -40,13 +40,13 @@ url = "/"
 title = "Algorithm"
 url = "/algorithm"
 
-[[params.nav.custom]]
-title = "Friends"
-url = "/friends"
+# [[params.nav.custom]]
+# title = "Friends"
+# url = "/friends"
 
-[[params.nav.custom]]
-title = "About"
-url = "/about"
+# [[params.nav.custom]]
+# title = "About"
+# url = "/about"
 
 [markup]
 codeFences = true
