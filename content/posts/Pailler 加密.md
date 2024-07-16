@@ -1,7 +1,7 @@
 ---
 title: 'Pailler 加密方案'
 date: 2024-07-09T16:24:16+08:00
-draft: true
+draft: false
 tags: ['cryptography']
 ---
 
@@ -232,7 +232,104 @@ assert m == m1 * k
 
 ## Pailler Correctness
 
-在了解 Pailler 加密 & 解密的正确性之前，我们需要了解一个结论 [Carmichael theorem](https://en.wikipedia.org/wiki/Carmichael_function)
+### 二项式展开定理
+
+在了解 Pailler 加密 & 解密的正确性之前，我们需要知道 **二项式展开定理**，对于 $$(1 + n) ^ x$$ 用二项式展开可以得到如下的式子：
+
+$$
+(1 + n) ^ x  = \sum_{k=0}^{x}{\binom{x}{k}n^k} = 1 + nx + \binom{x}{2}n^2 + \cdots +  n^x
+$$
+
+我们将两边都进行模 $$n^2$$，这样我们可以得到如下的式子：
+
+$$
+(1 + n)^ x \equiv 1 + nx \pmod{n^2}
+$$
+
+我们令 $$y = (1 + n) ^ x$$，根据上式稍微变化一下，我们可以得到如下的式子：
+
+$$
+y = kn^2 + 1 + nx
+$$
+
+两边减 $$1$$，在进行除 $$n$$ 可以得到如下的式子
+
+$$
+\frac{y-1}{n} = kn + x
+$$
+
+最终得到如下的式子
+
+$$
+x \equiv \frac{y - 1}{n} \pmod{n}
+$$
+
+因此对于函数 $$L(x)$$，我们可以得到如下的式子：
+
+$$
+L((1 + n) ^ x \bmod n^2) \equiv x \pmod{n}
+$$
+
+### Carmichael 定理
+
+[Carmichael theorem](https://en.wikipedia.org/wiki/Carmichael_function) 定理：$$\lambda$$是$$n$$的 Carmichael 函数，Carmichael 函数$$\lambda(n)$$是使得对于所有与$$n$$互质的整数$$w$$，都有$$w ^{\lambda(n)} \equiv 1 \pmod n$$。对于 Carmichael 定理，满足以下的式子：
+
+$$
+\left\\{
+    \begin{array}{cc}
+        w^{\lambda} \equiv 1 \bmod n \\\
+        w^{n\lambda} \equiv 1 \bmod{n^{2}}
+    \end{array}
+\right.
+$$
+
+对于第二个等式，我们可以从第一式子出发并结合 **二项式展开定理**，从第一个式子出发，我们可以得到如下的式子：$$w^{\lambda} = 1 + kn$$，两边同时进行幂次操作可以得到 $$w^{n\lambda} = (1 + kn)^n$$，根据二项式展开定理的结论，我们可以得到如下的式子：
+
+$$
+w ^ {n\lambda} \equiv (1 + kn) ^ {n} \equiv 1 + kn^2 + \binom{n}{2}k^2n^2 + \cdots + n^n \equiv 1 \pmod{n^2}
+$$
+
+所以对于 Pailler 解密的式子：
+
+$$
+L(c^{\lambda} \bmod n^2) \cdot \mu \equiv \frac{L(c^\lambda \bmod{n^2})}{L(g^\lambda \bmod n^2)} \bmod n
+$$
+
+其中 $$c^\lambda \equiv g^{m\lambda}r^{m\lambda} \equiv g^{m\lambda} \pmod{n^2}$$，所以可以得到如下的式子：
+
+$$
+L(c^{\lambda} \bmod n^2) \cdot \mu \equiv \frac{L(g^{m\lambda} \bmod{n^2})}{L(g^\lambda \bmod n^2)} \bmod n
+$$
+
+由 Carmichael 定理可知：$$g^\lambda \equiv 1 \bmod n$$，所以我们可以得到如下的式子：
+
+$$
+g^\lambda \equiv 1 + kn \pmod{n^2}
+$$
+
+$$
+g^{m\lambda} \equiv (1 + kn)^m \equiv 1 + kmn \pmod{n^2}
+$$
+
+那么，我们可以将式子式子进行化简：
+
+$$
+L(g^{m\lambda} \bmod n^2) = \frac{g^{m\lambda} -1}{n} = km
+$$
+
+$$
+L(g^\lambda \bmod n^2) = \frac{g^\lambda - 1}{n} = k
+$$
+
+将上式代入到解密的式子中，可以得到最终的结果：
+
+$$
+L(c^{\lambda} \bmod n^2) \cdot \mu \equiv \frac{L(g^{m\lambda} \bmod n^2)}{L(g^\lambda \bmod n^2)} \equiv \frac{km}{k} \equiv m \bmod n
+$$
+
+这样就证明了 Pailler 的 ✅ 正确性。
+
+## References
 
 > [Wikipedia: Paillier cryptosystem](https://en.wikipedia.org/wiki/Paillier_cryptosystem)
 >
