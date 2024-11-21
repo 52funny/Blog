@@ -34,4 +34,4 @@ jobs:
           external_repository: 52funny/52funny.github.io
           publish_branch: master
           publish_dir: ./public
-          cname: 52funny.io
+          cname: 52funny.me
